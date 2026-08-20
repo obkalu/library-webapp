@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metropolis Public Library | Your Gateway to Knowledge</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a365d;    /* Deep Navy */
+            --secondary: #2b6cb0;  /* Slate Blue */
+            --accent: #38b2ac;     /* Teal Accent */
+            --bg-light: #f7fafc;
+            --text-dark: #2d3748;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.9);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); text-decoration: none; }
+        .nav-links { list-style: none; display: flex; gap: 2rem; }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover { color: var(--secondary); }
+        .user-tools { display: flex; gap: 1rem; align-items: center; }
+        .btn-account { background: var(--primary); color: white; padding: 0.5rem 1.2rem; border-radius: 5px; text-decoration: none; }
+
+        /* Hero Section & Search-First Design */
+        .hero {
+            height: 60vh;
+            background: linear-gradient(rgba(26, 54, 93, 0.7), rgba(26, 54, 93, 0.7)), 
+                        url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        .search-container {
+            background: var(--glass);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            width: 100%;
+            max-width: 800px;
+            margin-top: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .search-tabs { display: flex; gap: 1rem; margin-bottom: 1rem; }
+        .search-tab { cursor: pointer; color: var(--primary); font-weight: 600; padding-bottom: 5px; border-bottom: 2px solid transparent; }
+        .search-tab.active { border-bottom: 2px solid var(--secondary); }
+
+        .search-bar { display: flex; gap: 0; }
+        .search-bar input { flex: 1; padding: 1rem; border: 1px solid #ddd; border-radius: 5px 0 0 5px; font-size: 1rem; }
+        .search-bar button { padding: 1rem 2rem; background: var(--secondary); color: white; border: none; border-radius: 0 5px 5px 0; cursor: pointer; font-size: 1rem; }
+
+        /* Features Section */
+        .section { padding: 4rem 5%; }
+        .section-title { font-size: 2rem; color: var(--primary); margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+
+        .card { background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: transform 0.3s; }
+        .card:hover { transform: translateY(-5px); }
+        .card i { font-size: 2rem; color: var(--accent); margin-bottom: 1rem; }
+        .card h3 { margin-bottom: 1rem; }
+
+        /* New Arrivals (Horizontal Scroll) */
+        .arrivals-scroll { display: flex; overflow-x: auto; gap: 1.5rem; padding-bottom: 1rem; }
+        .book-card { min-width: 180px; text-align: center; }
+        .book-card img { width: 100%; border-radius: 5px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 0.5rem; }
+
+        /* Footer */
+        footer { background: var(--primary); color: white; padding: 4rem 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; }
+        footer h4 { margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.8rem; }
+        .footer-links a { color: #cbd5e0; text-decoration: none; font-size: 0.9rem; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero { height: 50vh; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nav Bar -->
+    <nav>
+        <a href="#" class="logo">METROPOLIS <span style="color: var(--accent)">LIBRARY</span></a>
+        <ul class="nav-links">
+            <li><a href="#">Books & Media</a></li>
+            <li><a href="#">Digital Library</a></li>
+            <li><a href="#">Research</a></li>
+            <li><a href="#">Kids & Teens</a></li>
+            <li><a href="#">Events</a></li>
+        </ul>
+        <div class="user-tools">
+            <a href="#"><i class="fas fa-clock"></i> Open until 8 PM</a>
+            <a href="#" class="btn-account">My Account</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>Discover Your Next Story</h1>
+        <p>Access 1.2 million items, local archives, and digital collections.</p>
+        
+        <div class="search-container">
+            <div class="search-tabs">
+                <span class="search-tab active">Catalog</span>
+                <span class="search-tab">Website</span>
+                <span class="search-tab">Digital Archives</span>
+            </div>
+            <form class="search-bar">
+                <input type="text" placeholder="Search by title, author, or keyword..." aria-label="Search the catalog">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </header>
+
+    <!-- Quick Services -->
+    <section class="section">
+        <div class="grid">
+            <div class="card">
+                <i class="fas fa-laptop"></i>
+                <h3>Reserve a Room</h3>
+                <p>Book a study space or community meeting room in seconds.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>Borrow eBooks</h3>
+                <p>Read on the go with our Libby and Hoopla integrations.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-user-graduate"></i>
+                <h3>Online Learning</h3>
+                <p>Free access to LinkedIn Learning, Mango Languages, and more.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Museum Passes</h3>
+                <p>Discover local culture with free or discounted library passes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Arrivals -->
+    <section class="section" style="background: white;">
+        <div class="section-title">
+            <h2>New Arrivals</h2>
+            <a href="#" style="font-size: 1rem; text-decoration: none; color: var(--secondary);">View All →</a>
+        </div>
+        <div class="arrivals-scroll">
+            <div class="book-card">
+                <img src="https://covers.openlibrary.org/b/id/8225266-L.jpg" alt="Book Cover">
+                <p><strong>The Great Gatsby</strong></p>
+                <p style="font-size: 0.8rem; color: #666;">F. Scott Fitzgerald</p>
+            </div>
+            <div class="book-card">
+                <img src="https://covers.openlibrary.org/b/id/12547191-L.jpg" alt="Book Cover">
+                <p><strong>Dune</strong></p>
+                <p style="font-size: 0.8rem; color: #666;">Frank Herbert</p>
+            </div>
+            <div class="book-card">
+                <img src="https://covers.openlibrary.org/b/id/12836274-L.jpg" alt="Book Cover">
+                <p><strong>Tomorrow and Tomorrow</strong></p>
+                <p style="font-size: 0.8rem; color: #666;">Gabrielle Zevin</p>
+            </div>
+            <div class="book-card">
+                <img src="https://covers.openlibrary.org/b/id/10524444-L.jpg" alt="Book Cover">
+                <p><strong>Project Hail Mary</strong></p>
+                <p style="font-size: 0.8rem; color: #666;">Andy Weir</p>
+            </div>
+            <div class="book-card">
+                <img src="https://covers.openlibrary.org/b/id/7222246-L.jpg" alt="Book Cover">
+                <p><strong>1984</strong></p>
+                <p style="font-size: 0.8rem; color: #666;">George Orwell</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events -->
+    <section class="section">
+        <div class="section-title">
+            <h2>Upcoming Events</h2>
+            <a href="#" style="font-size: 1rem; text-decoration: none; color: var(--secondary);">Full Calendar →</a>
+        </div>
+        <div class="grid">
+            <div class="card" style="border-left: 5px solid var(--accent);">
+                <span style="color: var(--accent); font-weight: bold;">JULY 15 | 6:00 PM</span>
+                <h3>Summer Reading Kickoff</h3>
+                <p>Join us for music, ice cream, and your first summer reading logs.</p>
+            </div>
+            <div class="card" style="border-left: 5px solid var(--secondary);">
+                <span style="color: var(--secondary); font-weight: bold;">JULY 18 | 2:00 PM</span>
+                <h3>AI for Beginners Workshop</h3>
+                <p>Learn how to use modern AI tools for creative projects and research.</p>
+            </div>
+            <div class="card" style="border-left: 5px solid var(--primary);">
+                <span style="color: var(--primary); font-weight: bold;">JULY 20 | 10:30 AM</span>
+                <h3>Toddler Storytime</h3>
+                <p>Engaging stories and songs for children ages 2 to 4.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div>
+            <h4>Contact Us</h4>
+            <p>123 Knowledge Way<br>Metropolis, ST 12345</p>
+            <p>(555) 012-3456</p>
+            <p>hello@metropolislib.org</p>
+        </div>
+        <div>
+            <h4>Library Hours</h4>
+            <ul class="footer-links">
+                <li>Mon-Thu: 9 AM - 8 PM</li>
+                <li>Fri-Sat: 9 AM - 5 PM</li>
+                <li>Sun: 1 PM - 5 PM</li>
+            </ul>
+        </div>
+        <div>
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+                <li><a href="#">Donate to the Library</a></li>
+                <li><a href="#">Volunteer Opportunities</a></li>
+                <li><a href="#">Board of Trustees</a></li>
+                <li><a href="#">Employment</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Follow Us</h4>
+            <div style="display: flex; gap: 1rem; font-size: 1.5rem;">
+                <a href="#" style="color: white;"><i class="fab fa-instagram"></i></a>
+                <a href="#" style="color: white;"><i class="fab fa-facebook"></i></a>
+                <a href="#" style="color: white;"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
